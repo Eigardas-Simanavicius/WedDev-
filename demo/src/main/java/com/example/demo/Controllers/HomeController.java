@@ -1,12 +1,9 @@
-package com.example.demo;
+package com.example.demo.Controllers;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
     @GetMapping("/")
-    @ResponseBody
-    public String home() {
-        return "Server is running!";
+    public String home() {return "homepage";}
     }
-}

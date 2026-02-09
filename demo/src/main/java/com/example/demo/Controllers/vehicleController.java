@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.Controllers;
 
+import com.example.demo.vehicle;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
