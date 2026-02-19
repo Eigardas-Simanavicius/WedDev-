@@ -1,6 +1,7 @@
 package com.example.demo.Entitys;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 
 @Entity
 public class Product {
