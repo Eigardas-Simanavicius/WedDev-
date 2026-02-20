@@ -12,7 +12,7 @@ public class Product {
     @Column(name = "product_name",nullable = false,length = 100)
     private String name;
 
-    private double price;
+    private Double price;
 
     public void setName(String newName) {
         this.name = newName;
@@ -21,4 +21,8 @@ public class Product {
     public void setPrice(Double newPrice){
         this.price = newPrice;
     }
+
+    public String getName(){return name;}
+    public Double getPrice(){return price;}
+
 }

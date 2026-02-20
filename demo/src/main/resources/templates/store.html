@@ -12,7 +12,9 @@
     <nav class="navbar" th:fragment="navbar">
          <ul class="nav-right">
           <li class ="split" > <a class="title" th:href="@{/}">Eigbooks</a> </li>
-          <li> <a th:href="@{/showVehicle}">Books</a> </li>
+          <li> <a>Account</a></li>
+          <li> <a> Cart</a></li>
+          <li> <a th:href="@{/store}">Books</a> </li>
           <li> <a th:href="@{/}">Home</a> </li>
          </ul>
     </nav>
@@ -22,61 +24,13 @@
 <main>
   <h1> All products </h1>
     <div class="store">
-      <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p>
-      
-      </div>       
-      <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p>
-      
-      </div>        <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p>
-      
-      </div>  
-        <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p>
-      
-        </div>  
-       <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p>
-      
-        </div>          <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p> 
-        </div> 
-            <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p> 
-        </div> 
-
-        
-      </div>
+        <div class="card" th:each="book : ${books}">
+            <h1><span th:text="${book.getName()}"> </span></h1>
+            <p class="price"><span th:text ="${book.getPrice()}"></span></p>
+            <p>Books can be read sometimes</p>
+            <p><button>Add to Cart</button></p>
+        </div>
+    </div>
 
 </main>
 </body>

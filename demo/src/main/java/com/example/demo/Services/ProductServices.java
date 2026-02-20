@@ -16,6 +16,7 @@ public class ProductServices {
         Product pro = new Product();
         pro.setName("Some book");
         pro.setPrice(23.44);
+        //productRepository.save(pro);
     }
 
 
