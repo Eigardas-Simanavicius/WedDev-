@@ -1,12 +1,5 @@
 <!DOCTYPE html>
-<html lang = "en" xmlns:th="http://www.thymeleaf.org" >
-<head>
-    <title>Eigbooks</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{../css/stylesheet.css}" rel="stylesheet" />
-</head>
-<body>
+<html lang="en">
 <header>
 
     <nav class="navbar" th:fragment="navbar">
@@ -20,8 +13,6 @@
     </nav>
 </header>
 <body>
-	<h1>Result</h1>
-    <p th:text="${user.getName()}" />
-    <a href="/greeting">Submit another message</a>
+
 </body>
 </html>
