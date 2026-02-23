@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <title>Eigbooks</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{../css/stylesheet.css}" rel="stylesheet" />
+</head>
 <header>
+
 
     <nav class="navbar" th:fragment="navbar">
         <ul class="nav-right">
@@ -13,6 +20,14 @@
     </nav>
 </header>
 <body>
-
+<form action="#" th:action="@{/SignUpProcess}" th:object="${user}" method="post">
+    <p>Name <label>
+        <input type="text" th:field="*{name}" />
+    </label></p>
+    <p>Password <label>
+        <input type="text" th:field="*{pass}" />
+    </label></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
 </body>
 </html>

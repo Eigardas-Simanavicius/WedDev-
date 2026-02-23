@@ -16,11 +16,15 @@ public class ProductServices {
         Product pro = new Product();
         pro.setName("Some book");
         pro.setPrice(23.44);
+
         //productRepository.save(pro);
     }
 
 
     public List<Product> getAllProducts(){
         return productRepository.findAll();
+    }
+    public Long getBookId(Product book){
+        return 12L;
     }
 }

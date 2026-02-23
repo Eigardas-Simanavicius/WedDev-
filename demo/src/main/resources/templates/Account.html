@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en" xmlns:th="http://www.thymeleaf.org" >
 <head>
+    <title>Eigbooks</title>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{../css/stylesheet.css}" rel="stylesheet" />
 </head>
 <body>
+<header>
 
+
+    <nav class="navbar" th:fragment="navbar">
+        <ul class="nav-right">
+            <li class ="split" > <a class="title" th:href="@{/}">Eigbooks</a> </li>
+            <li> <a th:href="@{/SignIn}">Account</a></li>
+            <li> <a> Cart</a></li>
+            <li> <a th:href="@{/store}">Books</a> </li>
+            <li> <a th:href="@{/}">Home</a> </li>
+        </ul>
+    </nav>
+</header>
+    <h1> Welcome to your account section </h1>
+    <h1 th:text="${user}"> </h1>
+
+
+<h3> All products </h3>
+<div class="cart">
+    <div class="card" th:each="book : ${cart}">
+        <h1><span th:text="${book.getName()}"> </span></h1>
+        <p class="price"><span th:text ="${book.getPrice()}"></span></p>
+        <p>Books can be read sometimes</p>
+        <p><button>Add to Cart</button></p>
+    </div>
+</div>
 </body>
 </html>

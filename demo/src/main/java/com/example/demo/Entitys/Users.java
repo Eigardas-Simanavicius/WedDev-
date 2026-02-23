@@ -2,6 +2,9 @@ package com.example.demo.Entitys;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Users {
 
@@ -13,6 +16,8 @@ public class Users {
         private String name;
 
         private String Password;
+        private List<Long> currentCart = new ArrayList<>();
+        private List<List<Long>> PreviousOrders = new ArrayList<>();
 
         public Users() {
 
@@ -22,22 +27,27 @@ public class Users {
             this.name = newName;
         }
 
-        public void setPassword(String NewPass){
+        public void setPass(String NewPass){
             this.Password = NewPass;
         }
 
         public String getName(){return name;}
         public String getPass(){return Password;}
 
-        public Users(String name){
-                this.name = name;
-                this.Password = "0000";
-        }
-
-
         public Users(String name,String password){
                 this.name = name;
                 this.Password = password;
         }
 
+        public void addToCart(Long book){
+                currentCart.add(book);
+        }
+
+        public void recordPurchase(){
+                PreviousOrders.add(currentCart);
+                currentCart.clear();
+        }
+        public List<Long> getCart(){
+                return currentCart;
+        }
 }

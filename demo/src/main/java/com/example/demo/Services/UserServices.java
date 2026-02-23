@@ -16,14 +16,18 @@ public class UserServices {
     private UserRepository uR;
 
 
-    public Users isValidUser(String name){
+    public Users getUser(String name){
         List<Users> Result = uR.getUsersByuserName(name);
         return Result.getFirst();
     }
 
-    public void addUser(){
-        Users pro = new Users("Greg");
-        pro.setName("Greg");
-        uR.save(pro);
+    public List<Users> getUsers(){
+        return uR.getUsers();
+
     }
+
+    public void addUser(Users user){
+        uR.save(user);
+    }
+
 }

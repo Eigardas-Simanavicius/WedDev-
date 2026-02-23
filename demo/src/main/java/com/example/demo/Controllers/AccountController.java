@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class AccountController {
 
@@ -18,33 +21,55 @@ public class AccountController {
     UserServices uS;
 
     @GetMapping("/Account")
-    public String Account(HttpServletRequest request){
+    public String Account(HttpServletRequest request,Model model){
         HttpSession session = request.getSession();
         if(session.getAttribute("Sigma") == null){
             System.out.println(session.getAttribute("user"));
             return "redirect:/SignIn";
+        }else{
+
+            model.addAttribute("user",session.getAttribute("Sigma"));
+            uS.getUser(session.getAttribute("Sigma").toString());
+            model.addAttribute("cart",uS.getUser(session.getAttribute("Sigma").toString()).getCart());
+            return "Account";
         }
-        return "Account";
     }
     @GetMapping("/SignIn")
     public String SignIn(Model model){
-        model.addAttribute("user", new Users("Greg"));
+        List<Users> list = uS.getUsers();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getName());
+        }
+        model.addAttribute("user", new Users());
         return "SignIn";
     }
 
-    @PostMapping("/SignIn")
+    @PostMapping("/SignInProcess")
     public String formSubmit(@ModelAttribute("user") Users user, Model model, HttpServletRequest request){
-        //model.addAttribute("user", uS.isValidUser(user.getName()));
-        HttpSession session = request.getSession();
-        session.removeAttribute("user");
-        session.setAttribute("Sigma","user");
-        return "result2";
 
+        if(uS.getUser(user.getName()) != null) {
+            if (user.getPass() != null) {
+                if (user.getPass().equals(uS.getUser(user.getName()).getPass())) {
+                    HttpSession session = request.getSession();
+                    System.out.println(user.getName());
+                    session.setAttribute("Sigma", user.getName());
+                    System.out.println("lOGIND IN ");
+                    return "result2";
+                }
+            }
+        }
+        return "SignIn";
     }
 
     @GetMapping("/SignUp")
-    public String newAccount(){
-        uS.addUser();
+    public String newAccount(Model model){
+        model.addAttribute("user", new Users());
         return "SignUp";
+    }
+
+    @PostMapping("/SignUpProcess")
+    public String newAccountMade(@ModelAttribute("user") Users user, Model model){
+        uS.addUser(user);
+        return "SignIn";
     }
 }
