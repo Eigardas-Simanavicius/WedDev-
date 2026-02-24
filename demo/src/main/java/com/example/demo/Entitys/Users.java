@@ -17,7 +17,7 @@ public class Users {
 
         private String Password;
         private List<Long> currentCart = new ArrayList<>();
-        private List<List<Long>> PreviousOrders = new ArrayList<>();
+
 
         public Users() {
 
@@ -44,7 +44,7 @@ public class Users {
         }
 
         public void recordPurchase(){
-                PreviousOrders.add(currentCart);
+                //PreviousOrders.add(currentCart);
                 currentCart.clear();
         }
         public List<Long> getCart(){

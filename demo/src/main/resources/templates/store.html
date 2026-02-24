@@ -29,7 +29,7 @@
             <h1><span th:text="${book.getName()}"> </span></h1>
             <p class="price"><span th:text ="${book.getPrice()}"></span></p>
             <p>Books can be read sometimes</p>
-            <p><button>Add to Cart</button></p>
+            <p><button th:action="@{/AddtoCart}">Add to Cart</button></p>
         </div>
     </div>
 
