@@ -24,5 +24,6 @@ public class Product {
 
     public String getName(){return name;}
     public Double getPrice(){return price;}
+    public Long getId(){return Id;}
 
 }

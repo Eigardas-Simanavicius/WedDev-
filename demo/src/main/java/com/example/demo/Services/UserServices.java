@@ -16,6 +16,7 @@ public class UserServices {
     private UserRepository uR;
 
 
+
     public Users getUser(String name){
         List<Users> Result = uR.getUsersByuserName(name);
         return Result.getFirst();

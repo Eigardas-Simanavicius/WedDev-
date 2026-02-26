@@ -43,7 +43,13 @@ header {
   background-color: #e8878d;
 }
 
+.ItemTitle{
 
+}
+
+.CartList{
+  list-style-type: none;
+}
 .store{
     display: grid;
     align-items: center;
@@ -56,13 +62,19 @@ header {
 .cart{
   display: grid;
   align-items: flex-start;
+  width: 50%;
   grid-template-columns: 0.33fr 0.33fr 0.33fr ;
   column-gap: 20px;
-  margin-left: 150px;
   margin-right: 150px;
 }
 
-
+.cartObj{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;

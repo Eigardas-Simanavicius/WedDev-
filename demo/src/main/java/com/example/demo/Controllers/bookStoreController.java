@@ -1,6 +1,9 @@
 package com.example.demo.Controllers;
 
+import com.example.demo.Entitys.Product;
 import com.example.demo.Entitys.Users;
+import com.example.demo.Repository.CartRepo;
+import com.example.demo.Services.CartService;
 import com.example.demo.Services.ProductServices;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class bookStoreController {
   @Autowired
   ProductServices Ps;
+
+  @Autowired
+  CartService cS;
   @GetMapping("/store")
   public String home(Model model) {
     Ps.addProduct();
@@ -21,10 +27,12 @@ public class bookStoreController {
     return "store";
   }
 
-  @PostMapping("/AddtoCart")
-  public String AddtoCart(@ModelAttribute("user") Users user, Model model, HttpServletRequest request){
-    System.out.println("Added to Cart");
-    return "store";
+  @GetMapping("/AddtoCart")
+  public String AddtoCart(@ModelAttribute("input") Long book, Model model, HttpServletRequest request){
+
+    cS.addProductToCart(Ps.getBook((book)), request);
+    System.out.println(book);
+    return "redirect:/store";
 
   }
 }

@@ -1,6 +1,9 @@
 package com.example.demo.Controllers;
 
+import com.example.demo.Entitys.Cart;
 import com.example.demo.Entitys.Users;
+import com.example.demo.Services.CartService;
+import com.example.demo.Services.ProductServices;
 import com.example.demo.Services.UserServices;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -20,26 +23,27 @@ public class AccountController {
     @Autowired
     UserServices uS;
 
+    @Autowired
+    CartService cS;
+
+    @Autowired
+    ProductServices pS;
+
     @GetMapping("/Account")
     public String Account(HttpServletRequest request,Model model){
         HttpSession session = request.getSession();
-        if(session.getAttribute("Sigma") == null){
-            System.out.println(session.getAttribute("user"));
+        if(session.getAttribute("Logged in") == null){
+            System.out.println(session.getAttribute("user") + "is not logged in ");
             return "redirect:/SignIn";
         }else{
-
             model.addAttribute("user",session.getAttribute("Sigma"));
             uS.getUser(session.getAttribute("Sigma").toString());
-            model.addAttribute("cart",uS.getUser(session.getAttribute("Sigma").toString()).getCart());
             return "Account";
         }
     }
     @GetMapping("/SignIn")
     public String SignIn(Model model){
         List<Users> list = uS.getUsers();
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getName());
-        }
         model.addAttribute("user", new Users());
         return "SignIn";
     }
@@ -53,6 +57,7 @@ public class AccountController {
                     HttpSession session = request.getSession();
                     System.out.println(user.getName());
                     session.setAttribute("Sigma", user.getName());
+                    session.setAttribute("Logged in",true);
                     System.out.println("lOGIND IN ");
                     return "result2";
                 }

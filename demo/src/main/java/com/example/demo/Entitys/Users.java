@@ -16,7 +16,7 @@ public class Users {
         private String name;
 
         private String Password;
-        private List<Long> currentCart = new ArrayList<>();
+        private Long CurrentCartId;
 
 
         public Users() {
@@ -39,15 +39,12 @@ public class Users {
                 this.Password = password;
         }
 
-        public void addToCart(Long book){
-                currentCart.add(book);
+
+        public Long getCurrentCartId(){
+                return CurrentCartId;
         }
 
-        public void recordPurchase(){
-                //PreviousOrders.add(currentCart);
-                currentCart.clear();
-        }
-        public List<Long> getCart(){
-                return currentCart;
+        public void setCartId(Long Id){
+                CurrentCartId = Id;
         }
 }
