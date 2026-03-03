@@ -25,41 +25,69 @@ public class CartService {
     @Autowired
     ProductRepository pR;
 
-    public void addProductToCart(Product book, HttpServletRequest request){
+    public void addProductToCart(Product book, HttpServletRequest request) {
         HttpSession session = request.getSession();
+        System.out.println("Sigma is here");
+        System.out.println(session.getAttribute("cart") + " is the cart");
+        uS.getUser((String) session.getAttribute("Sigma")).getCurrentCartId().addProductId(book);
+        for (Product product : (findCart((Long) session.getAttribute("cart"))).getProductIds()) {
+            System.out.println(product.getName() + " is one of the books");
+        }
+    }
 
-        Cart cart = getCart(getCartId(uS.getUser((String) session.getAttribute("Sigma"))));
+    public void removeFromCart(Product book, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        uS.getUser((String) session.getAttribute("Sigma")).getCurrentCartId().removeProduct(book);
 
-        System.out.println(cart.getId());
-        cart.addProductId(book.getId());
-        session.setAttribute("cart",cart.getId());
-        System.out.println((session.getAttribute("cart")));
+    }
 
-    };
 
-    public Cart createNewCart()
-    {
+    public Cart createNewCart() {
         Cart cart = new Cart();
         cR.save(cart);
         return cart;
     }
 
-    public Cart getCart(Long Id){
-        return cR.findById(Id).orElse(createNewCart());
+    public Cart getCart(Users user) {
+        return user.getCurrentCartId();
     }
 
-    public Long getCartId(Users user){
-        Long Id =  user.getCurrentCartId();
-        if (Id != null){
+    public Cart findCart(Long id) {
+        return cR.findById(id).orElseThrow();
+    }
+
+    public Cart Cart(Users user) {
+        Cart Id = user.getCurrentCartId();
+        if (Id != null) {
             return Id;
-        }else{
-            long newId = createNewCart().getId();
-            user.setCartId(newId);
+        } else {
+            Cart newCart = createNewCart();
+            user.setCart(newCart);
             return user.getCurrentCartId();
         }
     }
-    public void attachCart(Users users, Long cartId){
-        users.setCartId(cartId);
+
+    public void quantityUp(Product book, Cart cart) {
+        cart.increaseQuanitiy(book);
     }
 
+    public void quantityDown(Product book, Cart cart) {
+        cart.decreaseQuanitiy(book);
+    }
+
+    public void checkOut(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Users curr = uS.getUser((String) session.getAttribute("Sigma"));
+        Cart currCart = curr.getCurrentCartId();
+        curr.finishOrder(currCart);
+        curr.setCart(createNewCart());
+        currCart.Finished = true;
+        session.setAttribute("cart", curr.getCurrentCartId().getId());
+        //uS.getUser("Admin").finishOrder(currCart);
+
+    }
+
+    public Cart getCartById(Long Id) {
+        return cR.findById(Id).orElseThrow();
+    }
 }

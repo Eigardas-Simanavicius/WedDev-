@@ -9,6 +9,7 @@
 <body>
 <header>
 
+
     <nav class="navbar" th:fragment="navbar">
         <ul class="nav-right">
             <li class ="split" > <a class="title" th:href="@{/}">Eigbooks</a> </li>
@@ -19,11 +20,21 @@
         </ul>
     </nav>
 </header>
-    <form action="#" th:action="@{/SignInProcess}" th:object="${user}" method="post">
-        <p>Name: <input type="text" th:field="*{name}" /></p>
-        <p>PassWord: <input type="password" th:field="*{pass}" /></p>
-        <p><input type="submit" value="Submit" /> </p>
-    </form>
-<button> <a th:href="@{/SignUp}">Create Account </a> </button>
+<h1> Welcome to your Cart section </h1>
+<h1 th:text="${user}"> </h1>
+
+
+<h3> All products </h3>
+<div class="cart">
+    <div class="cartObj" th:each="book,iter: ${cart.productIds}">
+        <ul class="CartList">
+            <img th:src ="@{../images/book.jpg}" alt="Book" class="cartImg" >
+            <li class="ItemTitle"><span th:text="${book.getName()}"> </span></li>
+            <li class ="ItemPrice">€ <span th:text ="${book.getPrice()}"></span> </li>
+            <li > Quantity:<span th:text ="${cart.getQuantities().get(iter.index)}"></span> </li>
+        </ul>
+    </div>
+</div>
+
 </body>
 </html>

@@ -16,13 +16,28 @@ public class Users {
         private String name;
 
         private String Password;
-        private Long CurrentCartId;
-
+        @OneToOne
+        private Cart cart;
+        private Boolean isAdmin = false;
+        @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+        private List<Cart> oldOrder = new ArrayList<>();
 
         public Users() {
 
         }
+        public void finishOrder(Cart cart){
+            for(Cart order:oldOrder){
+                System.out.println(order.getId() + " is all old orders");
+            }
+            System.out.println("why are we here?");
+            if(!oldOrder.contains(cart)) {
+                oldOrder.add(cart);
+            }
 
+        }
+        public List<Cart> getOldOrders(){
+            return oldOrder;
+        }
         public void setName(String newName) {
             this.name = newName;
         }
@@ -40,11 +55,21 @@ public class Users {
         }
 
 
-        public Long getCurrentCartId(){
-                return CurrentCartId;
+        public Cart getCurrentCartId(){
+                return cart;
         }
 
-        public void setCartId(Long Id){
-                CurrentCartId = Id;
+        public void setCart(Cart cart){
+                this.cart = cart;
         }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
+    }
+
+
 }

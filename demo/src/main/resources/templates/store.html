@@ -26,11 +26,11 @@
   <h1> All products </h1>
     <div class="store">
         <div class="card" th:each="book : ${books}">
-
-            <h1><span th:text="${book.getName()}"> </span></h1>
-            <p class="price"><span th:text ="${book.getPrice()}"></span></p>
-            <p>Books can be read sometimes</p>
-            <p><a th:href="@{/AddtoCart(input=${book.getId()})}" >Add to cart</a></p>
+            <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
+            <p><a class="name" th:href="@{/productPage(input=${book.getId()})}" ><span th:text ="${book.getName()}"></span></a></p>
+            <p class="Productprice"><span th:text ="${book.getPrice()}"></span></p>
+            <p> Books can be read sometimes </p>
+            <p class="fakebutton"><a th:href="@{/AddtoCart(input=${book.getId()})}" class="addtoCart" >Add to cart</a></p>
         </div>
     </div>
 

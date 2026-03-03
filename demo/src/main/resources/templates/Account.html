@@ -13,7 +13,7 @@
     <nav class="navbar" th:fragment="navbar">
         <ul class="nav-right">
             <li class ="split" > <a class="title" th:href="@{/}">Eigbooks</a> </li>
-            <li> <a th:href="@{/SignIn}">Account</a></li>
+            <li> <a th:href="@{/Account}">Account</a></li>
             <li> <a th:href="@{/Cart}"> Cart</a></li>
             <li> <a th:href="@{/store}">Books</a> </li>
             <li> <a th:href="@{/}">Home</a> </li>
@@ -21,18 +21,18 @@
     </nav>
 </header>
     <h1> Welcome to your account section </h1>
-    <h1 th:text="${user}"> </h1>
+    <h1 th:text="${user.getName()}"> </h1>
 
 
 <h3> All products </h3>
 <div class="cart">
-    <div class="cartObj" th:each="book : ${books}">
+    <div class="cartObj" th:each="cart,iter : ${orders}">
         <ul class="CartList">
-            <li class="ItemTitle"><span th:text="${book.getName()}"> </span></li>
+            <li class="ItemTitle"><a th:href="@{/PrevOrders(input=${orders.get(iter.index).getId()})}" > Order Id:<span th:text="${cart.getId()}">  </span>  </a></li>
+            <li class ="ItemPrice">€ <span th:text ="${cart.getPrice()}"></span> </li>
         </ul>
-        <p class="price"><span th:text ="${book.getPrice()}"></span></p>
-        <p><a th:href="@{/AddtoCart(input=${book.getId()})}" >Remove from cart</a></p>
     </div>
 </div>
+    <p><a th:href="@{/logOut}" >Log out</a></p>
 </body>
 </html>

@@ -9,6 +9,7 @@
 <body>
 <header>
 
+
     <nav class="navbar" th:fragment="navbar">
         <ul class="nav-right">
             <li class ="split" > <a class="title" th:href="@{/}">Eigbooks</a> </li>
@@ -19,11 +20,21 @@
         </ul>
     </nav>
 </header>
-    <form action="#" th:action="@{/SignInProcess}" th:object="${user}" method="post">
-        <p>Name: <input type="text" th:field="*{name}" /></p>
-        <p>PassWord: <input type="password" th:field="*{pass}" /></p>
-        <p><input type="submit" value="Submit" /> </p>
-    </form>
-<button> <a th:href="@{/SignUp}">Create Account </a> </button>
+    <h1> Welcome to your account section </h1>
+    <h1 th:text="${user}"> </h1>
+
+<ul class="nav-right">
+    <li class ="split" > <a class="title" th:href="@{/}">Eigbooks</a> </li>
+    <li> <a th:href="@{/AddNew}">Add New Products</a></li>
+    <li> <a th:href="@{/HideProduct}"> Hide Product </a></li>
+    <li> <a th:href="@{/}">Review Orders</a> </li>
+    <li> <a th:href="@{/}">Home</a> </li>
+</ul>
+<h3> Add new products </h3>
+
+
+
+    <p><a th:href="@{/logOut}" >Log out</a></p>
 </body>
 </html>
+

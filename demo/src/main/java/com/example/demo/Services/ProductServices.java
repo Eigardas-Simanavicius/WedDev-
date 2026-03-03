@@ -1,4 +1,5 @@
 package com.example.demo.Services;
+import java.util.stream.Collectors;
 
 import com.example.demo.Entitys.Product;
 import com.example.demo.Repository.ProductRepository;
@@ -26,11 +27,6 @@ public class ProductServices {
         return productRepository.findAll();
     }
 
-    public List<Product> getAllProductswithId(List<Long> Ids)
-    {
-
-        return productRepository.findAllById(Ids);
-    }
     public Long getBookId(Product book){
         return 12L;
     }
@@ -38,5 +34,13 @@ public class ProductServices {
     public Product getBook(Long Id){
         System.out.println(productRepository.findById(Id).orElseThrow().getPrice());
         return productRepository.findById(Id).orElseThrow();
+    }
+
+    public void NewProduct(Product book){
+        productRepository.save(book);
+    }
+
+    public List<Product> getAllShownProducts(){
+        return productRepository.getUsersByProductByHidden();
     }
 }

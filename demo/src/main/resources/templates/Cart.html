@@ -13,26 +13,32 @@
     <nav class="navbar" th:fragment="navbar">
         <ul class="nav-right">
             <li class ="split" > <a class="title" th:href="@{/}">Eigbooks</a> </li>
-            <li> <a th:href="@{/SignIn}">Account</a></li>
+            <li> <a th:href="@{/Account}">Account</a></li>
             <li> <a th:href="@{/Cart}"> Cart</a></li>
             <li> <a th:href="@{/store}">Books</a> </li>
             <li> <a th:href="@{/}">Home</a> </li>
         </ul>
     </nav>
 </header>
-<h1> Welcome to your account section </h1>
+<h1> Welcome to your Cart section </h1>
 <h1 th:text="${user}"> </h1>
 
 
 <h3> All products </h3>
 <div class="cart">
-    <div class="cartObj" th:each="book : ${books}">
+    <div class="cartObj" th:each="book,iter: ${cart.productIds}">
         <ul class="CartList">
+            <img th:src ="@{../images/book.jpg}" alt="Book" class="cartImg" >
             <li class="ItemTitle"><span th:text="${book.getName()}"> </span></li>
+            <li class ="ItemPrice">€ <span th:text ="${book.getPrice()}"></span> </li>
+            <li > <span th:text ="${cart.getQuantities().get(iter.index)}">Quantity</span> </li>
+            <li> <a th:href="@{/Increasequantitiy(input=${book.getId()})}"> Increase quantity</a></li>
+            <li><a th:href="@{/Decreasequantitiy(input=${book.getId()})}"> decrease quantity</a></li>
         </ul>
-        <p class="price"><span th:text ="${book.getPrice()}"></span></p>
-        <p><a th:href="@{/AddtoCart(input=${book.getId()})}" >Remove from cart</a></p>
+        <p class="cartRemove"><a th:href="@{/RemovefromCart(input=${book.getId()})}" class="fakebutton">Remove from cart</a></p>
     </div>
 </div>
+
+<p class="cartRemove"><a th:href="@{/Checkout(input=${cart})}" class="fakebutton">CheckOut</a></p>
 </body>
 </html>

@@ -31,4 +31,13 @@ public class UserServices {
         uR.save(user);
     }
 
+    public void createAdmin(){
+        Users Admin = new Users("Admin","Admin");
+        Admin.setAdmin(true);
+        addUser(Admin);
+    }
+    public void greatPurge(){
+        uR.deleteAll();
+    }
+
 }

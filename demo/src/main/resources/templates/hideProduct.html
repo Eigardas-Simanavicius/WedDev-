@@ -9,6 +9,7 @@
 <body>
 <header>
 
+
     <nav class="navbar" th:fragment="navbar">
         <ul class="nav-right">
             <li class ="split" > <a class="title" th:href="@{/}">Eigbooks</a> </li>
@@ -19,11 +20,20 @@
         </ul>
     </nav>
 </header>
-    <form action="#" th:action="@{/SignInProcess}" th:object="${user}" method="post">
-        <p>Name: <input type="text" th:field="*{name}" /></p>
-        <p>PassWord: <input type="password" th:field="*{pass}" /></p>
-        <p><input type="submit" value="Submit" /> </p>
-    </form>
-<button> <a th:href="@{/SignUp}">Create Account </a> </button>
+
+
+<main>
+    <h1> All products </h1>
+    <div class="store">
+        <div class="card" th:each="book : ${books}">
+            <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
+            <p><a class="name" th:href="@{/productPage(input=${book.getId()})}" ><span th:text ="${book.getName()}"></span></a></p>
+            <p class="Productprice"><span th:text ="${book.getPrice()}"></span></p>
+            <p class="Productprice"><span th:text ="${book.getHidden().toString()}"></span></p>
+            <p class="fakebutton"><a th:href="@{/Hide(input=${book.getId()})}" class="addtoCart" >Hide product</a></p>
+        </div>
+    </div>
+
+</main>
 </body>
 </html>

@@ -44,11 +44,25 @@ header {
 }
 
 .ItemTitle{
-
+text-align: left;
+  width: 70%;
+  font-size: 250%;
+  display:inline-block;
 }
-
+.ItemPrice{
+  width: 10%;
+  font-size: 250%;
+  text-align: center;
+  float: right;
+  display:inline-block;
+}
 .CartList{
+  overflow: hidden;
   list-style-type: none;
+  color: black;
+  padding: 10px;
+  margin: 0px;
+
 }
 .store{
     display: grid;
@@ -62,18 +76,17 @@ header {
 .cart{
   display: grid;
   align-items: flex-start;
-  width: 50%;
-  grid-template-columns: 0.33fr 0.33fr 0.33fr ;
+  width: 100%;
   column-gap: 20px;
   margin-right: 150px;
 }
 
 .cartObj{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 80%;
+  width: 100%;
   margin: auto;
   text-align: center;
-  font-family: arial;
+  font-family: arial, serif;
 }
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -102,4 +115,87 @@ header {
 
 .card button:hover {
   opacity: 0.7;
+}
+
+.addtoCart {
+  background-color: black;
+  width: 100%;
+  color: white;
+  padding: 1em 0em;
+  text-decoration: none;
+  text-transform: uppercase;
+  display:inline-block;
+  height:100%;
+}
+.name {
+  color: black;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.fakebutton{
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+
+.product {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.productImage{
+  width: 50%;
+  float: left;
+}
+.productName{
+  float: right;
+  font-size: 80px;
+  width: 50%;
+}
+
+.productAddtoCart{
+  background-color: black;
+  width: 50%;
+  color: white;
+  padding: 1em 0em;
+  text-decoration: none;
+  text-transform: uppercase;
+  display:inline-block;
+  height:100%;
+}
+
+.productPrice{
+  color: grey;
+  font-size: 50px;
+}
+
+.cartImg{
+  float: left;
+  width: 20%;
+  height: 5%;
+}
+
+.cartRemove{
+  float: left;
+  background-color: black;
+  width: 50%;
+  color: white;
+  padding: 1em 0em;
+  text-decoration: none;
+  text-transform: uppercase;
+  display:inline-block;
+  height:100%;
+}
+.quantity{
+  float: right;
+  font-size: 250%;
 }
