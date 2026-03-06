@@ -80,13 +80,14 @@ public class CartService {
         HttpSession session = request.getSession();
         Users curr = uS.getUser((String) session.getAttribute("Sigma"));
         Cart currCart = curr.getCurrentCartId();
-        curr.finishOrder(currCart);
-        curr.setCart(createNewCart());
-        currCart.Finished = true;
-        currCart.setFinalPrice(currCart.getPrice());
-        currCart.setStatus(OrderCartStatus.Ordered);
-        session.setAttribute("cart", curr.getCurrentCartId().getId());
-        //uS.getUser("Admin").finishOrder(currCart);
+        if (currCart.getProductIds().isEmpty()) {
+            curr.finishOrder(currCart);
+            curr.setCart(createNewCart());
+            currCart.Finished = true;
+            currCart.setFinalPrice(currCart.getPrice());
+            currCart.setStatus(OrderCartStatus.Ordered);
+            session.setAttribute("cart", curr.getCurrentCartId().getId());
+        }
 
     }
 

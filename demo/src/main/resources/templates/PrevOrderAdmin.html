@@ -29,19 +29,20 @@
     <div class="cartObj" th:each="book,iter: ${cart.productIds}">
         <ul class="CartList">
             <img th:src ="@{../images/book.jpg}" alt="Book" class="cartImg" >
-            <li class="ItemTitle"><span th:text="${book.getName()}"> </span></li>
-            <li class ="ItemPrice">€ <span th:text ="${book.getPrice()}"></span> </li>
-            <li > Quantity:<span th:text ="${cart.getQuantities().get(iter.index)}"></span> </li>
+            <li class="ItemTitle" style="width: 20%"><span th:text="${book.getName()}"> </span></li>
+            <ul class="InfoList">
+                <li class ="ItemPrice">Price per Item: € <span th:text ="${book.getPrice()}"></span> </li>
+                <li class ="ItemPriceTotal">Total Price: € <span th:text ="${book.GetPricewithQuant( cart.getQuantities().get(iter.index))}"></span> </li>
+                <li style="text-align: right;font-size: 150%">Quantity: <span th:text ="${cart.getQuantities().get(iter.index)}"></span> </li>
+            </ul>
         </ul>
     </div>
 </div>
-
-
-    <ul class="CartList">
-        <li class ="split" >Change Order Status to  </li>
-        <li> <a th:href="@{/changeStatus(Status=${T(com.example.demo.Enums.OrderCartStatus).Ordered})}">Ordered</a></li>
-        <li> <a th:href="@{/changeStatus(Status=${T(com.example.demo.Enums.OrderCartStatus).Shipped})}"> Shipped</a></li>
-        <li> <a th:href="@{/changeStatus(Status=${T(com.example.demo.Enums.OrderCartStatus).Delivered})}">Delivered</a> </li>
+    <h4 style="text-align: center"> Change Delivery status to:</h4>
+    <ul class="buttons">
+        <li class="fakebutton"> <a th:href="@{/changeStatus(Status=${T(com.example.demo.Enums.OrderCartStatus).Ordered})}" class="addtoCart">Ordered</a></li>
+        <li class="fakebutton"> <a th:href="@{/changeStatus(Status=${T(com.example.demo.Enums.OrderCartStatus).Shipped})}" class="addtoCart"> Shipped</a></li>
+        <li class="fakebutton"> <a th:href="@{/changeStatus(Status=${T(com.example.demo.Enums.OrderCartStatus).Delivered})}" class="addtoCart">Delivered</a> </li>
     </ul>
 
 

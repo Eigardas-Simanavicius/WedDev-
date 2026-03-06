@@ -4,12 +4,10 @@
     <title>Eigbooks</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{../css/stylesheet.css}" rel="stylesheet" />
+    <link th:href="@{../css/cart.css}" rel="stylesheet" />
 </head>
 <body>
 <header>
-
-
     <nav class="navbar" th:fragment="navbar">
         <ul class="nav-right">
             <li class ="split" > <a class="title" th:href="@{/}">Eigbooks</a> </li>
@@ -20,31 +18,41 @@
         </ul>
     </nav>
 </header>
-<h1> Welcome to your Cart section </h1>
-<h1 th:text="${user}"> </h1>
+<div class="page">
+<div class="page-header">
+    <h1>Your Cart</h1>
+    <p class="greeting">Welcome back, <span th:text="${user}" ></span></p>
+</div>
 
 
-<div class="cart">
-    <div class="cartObj" th:each="book,iter: ${cart.productIds}">
-        <ul class="CartList">
-            <img th:src ="@{../images/book.jpg}" alt="Book" class="cartImg" >
-            <li class="ItemTitle" style="width: 20%"><span th:text="${book.getName()}"> </span></li>
-            <ul class="InfoList">
-            <li class ="ItemPrice">Price per Item: € <span th:text ="${book.getPrice()}"></span> </li>
-            <li class ="ItemPriceTotal">Total Price: € <span th:text ="${book.GetPricewithQuant( cart.getQuantities().get(iter.index))}"></span> </li>
-                <li style="text-align: right;font-size: 150%">Quantity: <span th:text ="${cart.getQuantities().get(iter.index)}"></span> </li>
-                <ul class="quantityButtons">
-            <li class="quantityButton" > <a th:href="@{/Increasequantitiy(input=${book.getId()})}" class="fakebutton"> Increase quantity</a></li>
-            <li class="quantityButton"><a th:href="@{/Decreasequantitiy(input=${book.getId()})}" class="fakebutton"> decrease quantity</a></li>
-                </ul>
-            </ul>
-        </ul>
-        <p class="cartRemove"><a th:href="@{/RemovefromCart(input=${book.getId()})}" class="fakebutton">Remove from cart</a></p>
+
+<div class="cart-items">
+    <div class="cart-card" th:each="book,iter: ${cart.productIds}">
+            <img th:src ="@{../images/book.jpg}" alt="Book" class="book-thumb" >
+        <div class="book-info">
+            <div class="book-title" style="width: 20%"><span th:text="${book.getName()}"> </span></div>
+            <div class ="price-unit">Price per Item: € <span th:text ="${book.getPrice()}"></span> </div>
+            <p class="cartRemove"><a th:href="@{/RemovefromCart(input=${book.getId()})}" class="fakebutton">Remove from cart</a></p>
+        </div>
+        <div class="qty-block">
+            <div class ="qty-price"  aria-label="Decrease">Total Price: € <span th:text ="${book.GetPricewithQuant( cart.getQuantities().get(iter.index))}"></span> </div>
+            <div class="qty-btn"> <a th:href="@{/Increasequantitiy(input=${book.getId()})}" style="text-decoration: none;scale: 150%;color: black"> + </a></div>
+            <span class="qty-num" id="qty" th:text ="${cart.getQuantities().get(iter.index)}"> 1 </span>
+            <div class="qty-btn"> <a th:href="@{/Decreasequantitiy(input=${book.getId()})}" style="text-decoration: none;scale: 150%;color: black"> - </a></div>
+
+        <div>
     </div>
 </div>
-<ul class="cartBottom">
-<li class ="ItemPriceTotalTotal" style="float:left;">Total Price: € <span th:text ="${cart.getPrice()}"></span> </li>
-<li class="cartRemove"style="text-align: left;"><a th:href="@{/Checkout(input=${cart})}" class="fakebutton">CheckOut</a></li>
-</ul>
+
+    </div>
+    <div class="summary-card">
+        <div class="summary-title">Order Summary</div>
+        <div class="summary-row"><span>Subtotal </span><span style="text-align: right;">€</span><span th:text ="${cart.getPrice()}"></span></div>
+        <div class="summary-row"><span>Shipping</span><span style="text-align: right;">€</span><span>Free</span></div>
+        <div class="summary-row total"><span>Total</span><span style="text-align: right;">€</span><span th:text="${cart.getPrice()}" style="font-size: 95%"> </span></div>
+        <div class="cartRemove"><a th:href="@{/Checkout(input=${cart})}" class="fakebutton">CheckOut</a></div>
+    </div>
+</div>
 </body>
+
 </html>

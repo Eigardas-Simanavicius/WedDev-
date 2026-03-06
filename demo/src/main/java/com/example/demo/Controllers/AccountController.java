@@ -69,7 +69,7 @@ public class AccountController {
                     session.setAttribute("cart",loggedIn.getCurrentCartId().getId());
                     session.setAttribute("Logged in",true);
                     System.out.println("lOGIND IN ");
-                    return "result2";
+                    return "redirect:/Account";
                 }
         }
         return "SignIn";
