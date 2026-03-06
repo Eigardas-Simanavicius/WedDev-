@@ -34,6 +34,9 @@ public class Product {
     public String getDescription(){return description;}
     public String getName(){return name;}
     public Double getPrice(){return price;}
+    public double GetPricewithQuant(Integer quant){
+        return  (double) Math.round((price*quant) * 100) /100;
+    }
     public Long getId(){return Id;}
     public void hideProduct(){
         Hidden = !Hidden;
@@ -41,5 +44,9 @@ public class Product {
     public void unHideProduct(){Hidden = false;}
     public Boolean getHidden(){return Hidden;}
 
-
+    public void update(Product book){
+        setName(book.getName());
+        setPrice(book.getPrice());
+        setDescription(book.getDescription());
+    }
 }

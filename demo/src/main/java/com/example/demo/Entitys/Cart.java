@@ -1,8 +1,10 @@
 package com.example.demo.Entitys;
 
+import com.example.demo.Enums.OrderCartStatus;
 import jakarta.persistence.*;
 
-import javax.swing.*;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
@@ -21,13 +23,16 @@ public class Cart {
     @ManyToMany(mappedBy = "oldOrder")
     private List<Users> users = new ArrayList<>();
     public boolean Finished = false;
-    public double getPrice(){
+    private double FinalPrice = 0;
+    public OrderCartStatus status;
+    public double getPrice() {
         double currFinalPrice = 0.0;
         for (int i = 0; i < products.size(); i++) {
             currFinalPrice += products.get(i).getPrice() * quantities.get(i);
         }
-        return currFinalPrice;
+        return (double) Math.round(currFinalPrice * 100) / 100;
     }
+
     public List<Product> getProductIds(){
         return products;
     }
@@ -73,13 +78,30 @@ public class Cart {
     }
     public void removeProduct(Product book){
         int n = products.indexOf(book);
-        quantities.remove(n);
         products.remove(book);
-        book.getCarts().remove(this);
+       // book.getCarts().remove(this);
 
     }
     public List<Integer> getQuantities(){
         return quantities;
     }
     public Long getId(){return Id;}
+    public void setStatus(OrderCartStatus newStatus){
+        status = newStatus;
+    }
+    public String  getStats(){
+        if(status == OrderCartStatus.Ordered){
+           return "Ordered";
+        } else if (status == OrderCartStatus.Shipped) {
+            return "Shipped";
+        } else if (status == OrderCartStatus.Delivered) {
+            return "Delivered";
+        }
+        return "";
+    }
+
+    public void setFinalPrice(Double price){
+        FinalPrice = (double) Math.round(price * 100) /100;
+    }
+    public double getFinalPrice(){return FinalPrice;}
 }

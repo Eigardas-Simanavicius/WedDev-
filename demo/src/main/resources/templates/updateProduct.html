@@ -20,22 +20,20 @@
         </ul>
     </nav>
 </header>
-    <h1> Welcome to your account section </h1>
-    <h1 th:text="${user.getName()}"> </h1>
 
 
-<h3> All products </h3>
-<div class="cart">
-    <div class="cartObj" th:each="cart,iter : ${orders}">
-        <ul class="CartList">
-            <li class="ItemTitle"><a th:href="@{/PrevOrders(input=${orders.get(iter.index).getId()})}" > Order Id:<span th:text="${cart.getId()}">  </span>  </a></li>
-            <li class ="ItemPrice">€ <span th:text ="${cart.getPrice()}"></span> </li>
-            <li >Current Order Status: <span th:text ="${cart.getStats()}"></span> </li>
-        </ul>
+<main>
+    <h1> All products </h1>
+    <div class="store">
+        <div class="card" th:each="book : ${books}">
+            <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
+            <p><a class="name" th:href="@{/productPage(input=${book.getId()})}" ><span th:text ="${book.getName()}"></span></a></p>
+            <p class="Productprice"><span th:text ="${book.getPrice()}"></span></p>
+            <p class="Productprice"><span th:text ="${book.getHidden().toString()}"></span></p>
+            <p class="fakebutton"><a th:href="@{/updateProductDetails(input=${book.getId()})}" class="addtoCart" > Update Product </a></p>
+        </div>
     </div>
-</div>
-<div class="buttons" style="margin-top:500px ">
-    <p class="fakebutton"><a th:href="@{/logOut}" class="addtoCart" >Log out</a></p>
-</div>
+
+</main>
 </body>
 </html>

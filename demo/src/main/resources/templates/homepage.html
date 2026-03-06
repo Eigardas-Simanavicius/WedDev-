@@ -24,52 +24,14 @@
 
 <main>
   <h1> New and popular products</h1>
-<div class="store">
-      <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p>
-      
-      </div>       
-      <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p>
-      
-      </div>        <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p>
-      
-      </div>  
-        <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p>
-      
-        </div>  
-       <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p>
-      
-        </div>          <div class="card">
-          <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
-          <h1>Book</h1>
-          <p class="price">€19.99</p>
-          <p>Books can be read sometimes</p>
-          <p><button>Add to Cart</button></p> 
-        </div> 
+    <div class="store">
+        <div class="card" th:each="book,iter : ${books}" th:if="${iter.index}<7">
+            <img th:src ="@{../images/book.jpg}" alt="Book" style="width:100%">
+            <p><a class="name" th:href="@{/productPage(input=${book.getId()})}" ><span th:text ="${book.getName()}"></span></a></p>
+            <p class="Productprice"><span th:text ="${book.getPrice()}"></span></p>
+            <p> Books can be read sometimes </p>
+            <p class="fakebutton"><a th:href="@{/AddtoCart(input=${book.getId()})}" class="addtoCart" >Add to cart</a></p>
+        </div>
     </div>
 </main>
 </body>

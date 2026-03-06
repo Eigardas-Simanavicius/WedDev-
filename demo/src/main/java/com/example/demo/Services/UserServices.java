@@ -18,8 +18,7 @@ public class UserServices {
 
 
     public Users getUser(String name){
-        List<Users> Result = uR.getUsersByuserName(name);
-        return Result.getFirst();
+        return uR.getUsersByuserName(name);
     }
 
     public List<Users> getUsers(){

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <title>Eigbooks</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{../css/stylesheet.css}" rel="stylesheet" />
+</head>
+<body>
+<header>
+
+
+    <nav class="navbar" th:fragment="navbar">
+        <ul class="nav-right">
+            <li class ="split" > <a class="title" th:href="@{/}">Eigbooks</a> </li>
+            <li> <a th:href="@{/Account}">Account</a></li>
+            <li> <a th:href="@{/Cart}"> Cart</a></li>
+            <li> <a th:href="@{/store}">Books</a> </li>
+            <li> <a th:href="@{/}">Home</a> </li>
+        </ul>
+    </nav>
+</header>
+<h1> Welcome to your Cart section </h1>
+<h1 th:text="${user}"> </h1>
+
+
+<h3> All products </h3>
+<div class="cart">
+    <div class="cartObj" th:each="book,iter: ${cart.productIds}">
+        <ul class="CartList">
+            <img th:src ="@{../images/book.jpg}" alt="Book" class="cartImg" >
+            <li class="ItemTitle"><span th:text="${book.getName()}"> </span></li>
+            <li class ="ItemPrice">€ <span th:text ="${book.getPrice()}"></span> </li>
+            <li > Quantity:<span th:text ="${cart.getQuantities().get(iter.index)}"></span> </li>
+        </ul>
+    </div>
+</div>
+
+
+    <ul class="CartList">
+        <li class ="split" >Change Order Status to  </li>
+        <li> <a th:href="@{/changeStatus(Status=${T(com.example.demo.Enums.OrderCartStatus).Ordered})}">Ordered</a></li>
+        <li> <a th:href="@{/changeStatus(Status=${T(com.example.demo.Enums.OrderCartStatus).Shipped})}"> Shipped</a></li>
+        <li> <a th:href="@{/changeStatus(Status=${T(com.example.demo.Enums.OrderCartStatus).Delivered})}">Delivered</a> </li>
+    </ul>
+
+
+</body>
+</html>

@@ -20,21 +20,19 @@
         </ul>
     </nav>
 </header>
-    <h1> Welcome to your account section </h1>
+    <h1> Welcome to the Admin account section. Select one of the options below </h1>
     <h1 th:text="${user}"> </h1>
 
-<ul class="nav-right">
-    <li class ="split" > <a class="title" th:href="@{/}">Eigbooks</a> </li>
-    <li> <a th:href="@{/AddNew}">Add New Products</a></li>
-    <li> <a th:href="@{/HideProduct}"> Hide Product </a></li>
-    <li> <a th:href="@{/}">Review Orders</a> </li>
-    <li> <a th:href="@{/}">Home</a> </li>
-</ul>
-<h3> Add new products </h3>
+<div class="buttons" style="margin-top:500px ">
+    <p class="fakebutton"><a th:href="@{/HideProduct}" class="addtoCart" >Hide a product</a></p>
+    <p class="fakebutton"><a th:href="@{/updateProduct}" class="addtoCart" >Update A product</a></p>
+    <p class="fakebutton"><a th:href="@{/AddNew}" class="addtoCart" >Create a new product</a></p>
+    <p class="fakebutton"><a th:href="@{/ViewOrders}" class="addtoCart" >Review Orders</a></p>
+    <p class="fakebutton"><a th:href="@{/logOut}" class="addtoCart" >Log out</a></p>
+</div>
 
 
 
-    <p><a th:href="@{/logOut}" >Log out</a></p>
 </body>
 </html>
 

@@ -20,6 +20,8 @@
     </nav>
 </header>
 <body>
+<h1 style="text-align: center"> Sign Up </h1>
+<div class="formbox">
 <form action="#" th:action="@{/SignUpProcess}" th:object="${user}" method="post">
     <p>Name <label>
         <input type="text" th:field="*{name}" />
@@ -27,7 +29,11 @@
     <p>Password <label>
         <input type="text" th:field="*{pass}" />
     </label></p>
+    <p>Admin? <label>
+        <input type="checkbox" th:field="${user.admin}" />
+    </label></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </div>
 </form>
 </body>
 </html>

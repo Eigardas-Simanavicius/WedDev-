@@ -23,12 +23,14 @@
 <body>
 <main>
     <div class="product">
-        <h1><span th:text="${book.getName()}" class="productName"> </span></h1>
-        <h1><span th:text="${book.getDescription()}"> </span></h1>
-        <img th:src ="@{../images/book.jpg}" alt="Book" class="productImage">
-        <p class="productPrice"> € <span th:text="${book.getPrice()}"> </span></p>
-    <p class="productAddtoCart"><a th:href="@{/AddtoCart(input=${book.getId()})}" class="fakebutton">Add to cart</a></p>
+        <img th:src ="@{../images/book.jpg}" alt="Book" class="product-image">
+        <div class="product-info">
+            <h1><span th:text="${book.getName()}"style="text-align: left"> </span></h1>
+        <p class="price"> Price Per Item: € <span th:text="${book.getPrice()}"> </span></p>
+        <p class="description"> <span th:text="${book.getDescription()}"> </span></p>
+        <p class="productAddtoCart"><a th:href="@{/AddtoCart(input=${book.getId()})}" class="fakebutton">Add to cart</a></p>
         <p class="desciption"></p>
+        </div>
     </div>
 </main>
 </body>

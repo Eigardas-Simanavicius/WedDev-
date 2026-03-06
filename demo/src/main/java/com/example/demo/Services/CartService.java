@@ -3,6 +3,7 @@ package com.example.demo.Services;
 import com.example.demo.Entitys.Cart;
 import com.example.demo.Entitys.Product;
 import com.example.demo.Entitys.Users;
+import com.example.demo.Enums.OrderCartStatus;
 import com.example.demo.Repository.CartRepo;
 import com.example.demo.Repository.ProductRepository;
 import com.example.demo.Repository.UserRepository;
@@ -82,6 +83,8 @@ public class CartService {
         curr.finishOrder(currCart);
         curr.setCart(createNewCart());
         currCart.Finished = true;
+        currCart.setFinalPrice(currCart.getPrice());
+        currCart.setStatus(OrderCartStatus.Ordered);
         session.setAttribute("cart", curr.getCurrentCartId().getId());
         //uS.getUser("Admin").finishOrder(currCart);
 
@@ -89,5 +92,9 @@ public class CartService {
 
     public Cart getCartById(Long Id) {
         return cR.findById(Id).orElseThrow();
+    }
+
+    public List<Cart> getAllFinished(){
+       return cR.getAllByFinished();
     }
 }

@@ -26,9 +26,6 @@ public class Users {
 
         }
         public void finishOrder(Cart cart){
-            for(Cart order:oldOrder){
-                System.out.println(order.getId() + " is all old orders");
-            }
             System.out.println("why are we here?");
             if(!oldOrder.contains(cart)) {
                 oldOrder.add(cart);

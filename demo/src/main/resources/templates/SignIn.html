@@ -19,11 +19,14 @@
         </ul>
     </nav>
 </header>
+<h1 style="text-align: center"> Sign In </h1>
+<div class="formbox">
     <form action="#" th:action="@{/SignInProcess}" th:object="${user}" method="post">
         <p>Name: <input type="text" th:field="*{name}" /></p>
         <p>PassWord: <input type="password" th:field="*{pass}" /></p>
         <p><input type="submit" value="Submit" /> </p>
     </form>
-<button> <a th:href="@{/SignUp}">Create Account </a> </button>
+<button> <a th:href="@{/SignUp}" >Create Account </a> </button>
+</div>
 </body>
 </html>

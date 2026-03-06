@@ -42,6 +42,7 @@ public class AccountController {
             System.out.println(curr.getName() + " is here" + curr.getAdmin());
             model.addAttribute("user",curr);
             model.addAttribute("orders",curr.getOldOrders());
+            System.out.println(cS.getCartById((long) 560).getStats() + "Back in account");
             if(curr.getAdmin() == true){
                 return "redirect:/Admin";
             }
@@ -85,6 +86,7 @@ public class AccountController {
     @GetMapping("/SignUp")
     public String newAccount(Model model){
         model.addAttribute("user", new Users());
+        model.addAttribute("Admin",false);
         return "SignUp";
     }
 

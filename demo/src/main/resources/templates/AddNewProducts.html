@@ -25,7 +25,8 @@
     <h1 th:text="${user}"> </h1>
 
 
-<h3> All products </h3>
+<h3 style="text-align: center"> Add New Products </h3>
+<div class="formbox">
 <form action="#" th:action="@{/CreateNewProduct}" th:object="${NuclearWeaponsLaunchCodes}" method="post">
     <p>Name: <label>
         <input type="text" th:field="*{name}" />
@@ -38,8 +39,10 @@
     <p>Description: <label>
         <input type="text" th:field="*{description}" />
     </label></p>
-    <p><input type="submit" value="Submit" /> </p>
+    <p><input type="submit" value="Submit" style="scale: 150%s"/> </p>
+
 </form>
-    <p><a th:href="@{/logOut}" >Log out</a></p>
+</div>
+
 </body>
 </html>

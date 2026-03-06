@@ -32,14 +32,18 @@ public class bookStoreController {
   public String AddtoCart(@ModelAttribute("input") Long book, Model model, HttpServletRequest request){
 
     HttpSession session = request.getSession();
+    if(session.getAttribute("Logged in") == null) {
+      System.out.println(session.getAttribute("user") + "is not logged in ");
+      return "redirect:/SignIn";
+    }else {
+      Cart cart = cS.findCart((Long) session.getAttribute("cart"));
+      Product product = Ps.getBook(book);
+      cS.addProductToCart(product, request);
 
-    Cart cart = cS.findCart((Long) session.getAttribute("cart"));
-    Product product = Ps.getBook(book);
-      cS.addProductToCart(product,request);
-
-    System.out.println(cart.getQuantities() + " is the quantities and there is also" + cart.getProductIds().size());
-    model.addAttribute("books",Ps.getAllProducts());
-    return "redirect:/store";
+      System.out.println(cart.getQuantities() + " is the quantities and there is also" + cart.getProductIds().size());
+      model.addAttribute("books", Ps.getAllProducts());
+      return "redirect:/store";
+    }
 
   }
 

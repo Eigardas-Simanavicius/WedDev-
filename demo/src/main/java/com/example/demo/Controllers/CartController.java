@@ -77,14 +77,18 @@ public class CartController {
     public String PrevOrders(@ModelAttribute("input") String cart,HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         Cart curr = cS.getCartById(Long.parseLong(cart));
-        System.out.println("Sigma is here" + cart);
         if(session.getAttribute("Logged in") != null){
+            Users currUser = uS.getUser((String) session.getAttribute("Sigma"));
+            model.addAttribute("user",currUser);
+            model.addAttribute("cart",curr);
+            session.setAttribute("currCart",curr.getId());
+            System.out.println(curr.getStats() + " On click");
+            if(currUser.getAdmin() == true){
+                return "PrevOrderAdmin";
+            }else {
 
-            model.addAttribute("user",session.getAttribute("Sigma"));
-            //model.addAttribute("cart", cS.getCartById(cart));
-            model.addAttribute("cart", curr);
-
-            return "PrevOrders";
+                return "PrevOrders";
+            }
         }else{
             return "redirect:/SignIn";
         }

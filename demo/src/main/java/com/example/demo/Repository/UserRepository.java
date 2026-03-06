@@ -13,7 +13,7 @@ import java.util.Objects;
 public interface UserRepository extends JpaRepository<Users,Integer> {
     //new custom query - search by name
     @Query(nativeQuery=true, value="SELECT * FROM Users WHERE USER_NAME = ?1")
-    public List<Users> getUsersByuserName(@Param ("name") String name);
+    public Users getUsersByuserName(@Param ("name") String name);
 
     @Query(nativeQuery=true, value="SELECT * FROM Users")
     public List<Users> getUsers();
